@@ -1,7 +1,10 @@
 const express = require('express'); //for simple express server
-
+//Here we established the connection between two files
+const connectDB = require('./config/db');
 const app = express();
 
+//connect database
+connectDB();
 app.get('/', (req, res) => res.send('API Running')); //single end point for check
 // the get function has two parameters path and the request and response
 
