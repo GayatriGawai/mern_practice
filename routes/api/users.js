@@ -12,6 +12,8 @@ has been integrated directly into express-validator
 */
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 const User = require('../../models/User');
 //@route     POST api/users
@@ -66,10 +68,26 @@ router.post(
 
             user.password = await bcrypt.hash(password, salt);
 
-            await user.save();
-            //Return jsonwebtoken
+            await user.save(); //Saved the user in database
 
-            res.send('User registered');
+            //Return jsonwebtoken
+            const payload = {
+                user: {
+                    id: user.id,
+                },
+            };
+            //We assigned the token
+            jwt.sign(
+                payload,
+                config.get('jwtSecret'),
+                { expiresIn: 360000 },
+                (err, token) => {
+                    if (err) throw err;
+                    res.json({ token });
+                }
+            );
+
+            // res.send('User registered');
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server error');
