@@ -17,6 +17,15 @@ const connectDB = async () => {
         " current URL string is deprecated, and will be removed in a future version."
         
         await mongoose.connect(db, { userNewUrlParser: true });
+
+        And if you are getting the error as 'DeprecationWarning : collection.ensureIndex is deprecated. 
+        Use createIndexes instead'
+
+        then : try foillowing
+             await mongoose.connect(db, { userNewUrlParser: true,
+                                          userCreateIndex: true 
+                                        });
+
 */
         console.log('+++++ MongoDB Connected +++++');
     } catch (err) {
