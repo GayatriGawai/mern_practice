@@ -6,7 +6,7 @@ const app = express();
 //connect database
 connectDB();
 app.get('/', (req, res) => res.send('API Running')); //single end point for check
-// the get function has two parameters path and the request and response
+// the get function has two parameters path(to get the router) and the request and response
 
 //Defined routes for each js file
 app.use('/api/users', require('./routes/api/users'));
