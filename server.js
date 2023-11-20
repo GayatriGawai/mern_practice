@@ -7,6 +7,9 @@ const app = express();
 //connect database
 connectDB();
 
+//Init Middleware
+app.use(express.json({ extended: false }));
+
 app.get('/', (req, res) => res.send('API Running'));
 /* single end point for check
 - the get function has two parameters path(to get the router) and the request and response
