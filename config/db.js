@@ -26,6 +26,16 @@ const connectDB = async () => {
                                           userCreateIndex: true 
                                         });
 
+
+        if you recieve the error as DeprecationWarning: collection.findAndModify 
+        is deprecated. Use findOneAndUpdate, findOneAndReplace or findOneAndDelete
+        instead.
+        the : try following :
+             await mongoose.connect(db, { userNewUrlParser: true,
+                                          userCreateIndex: true,
+                                          userFindAndModify: false
+                                        });
+
 */
         console.log('+++++ MongoDB Connected +++++');
     } catch (err) {
