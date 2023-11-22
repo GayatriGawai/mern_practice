@@ -148,5 +148,25 @@ router.get('/user/:user_id', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+//@route     DELETE api/profile
+//@desc      Delete profile user and post
+//@access    Provate
+
+router.delete('/', auth, async (req, res) => {
+    try {
+        //Will remove the profile
+        await Profile.findOneAndDelete({ user: req.user.id });
+        // findOneAndDelete(); is no longer supported in the newer version
+        //Will remove the user
+        await User.findOneAndDelete({ _id: req.user.id });
+
+        res.json({ msg: 'User deleted' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 //to export the route we created
 module.exports = router;
