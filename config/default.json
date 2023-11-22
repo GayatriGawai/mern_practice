@@ -1,5 +1,7 @@
 {
     "mongoURI":"mongodb+srv://gayatriginsnapsys:Gayatri%40123@devconnector.89gjjgw.mongodb.net/?retryWrites=true&w=majority",
-    "jwtSecret":"secretToken"
+    "jwtSecret":"secretToken",
+    "githubClientId": "6039d718f539ef00c2be",
+    "githubSecret":"f6b0c5f12ccbef6ec465de5234171ecbbbee9d03"
 }
 
