@@ -154,6 +154,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
         return res.status(500).send('Server error');
     }
 });
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //@route     POST api/posts/comment
 //@desc      Comment on a post
@@ -186,5 +187,39 @@ router.post(
         }
     }
 );
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//@route     DELETE api/posts/comment/:id/:comment_id
+//@desc      Deleting the comment on a post
+//@access    Private
+router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        //Pullout the comment
+        const comment = post.comments.find(
+            (comment) => comment.id === req.params.comment_id
+        );
+        //make sure comments exists
+        if (!comment) {
+            return res.status(405).json({ msg: 'Comment not exists' });
+        }
+        //to check the user
+        if (comment.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'User not authorized' });
+        }
+        //get remove the index
+        const removeIndex = post.comments.map((comment) =>
+            comment.user.toString().indexOf(req.user.id)
+        );
+        post.comments.splice(removeIndex, 1);
+        await post.save();
+        res.json(post.comments);
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).send('Server Error');
+    }
+});
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 //to export the route we created
 module.exports = router;
