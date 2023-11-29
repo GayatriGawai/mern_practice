@@ -43,7 +43,7 @@ const Register = () => {
             <div className="container">
                 <h1 className="large text-primary">Sign Up</h1>
                 <p className="lead">
-                    <i className="fas fa-user"></i>Create your account
+                    <i className="fas fa-user"></i> Create your account
                 </p>
                 <form className="form" onSubmit={(e) => onSubmit(e)}>
                     <div className="form-group">
@@ -94,6 +94,7 @@ const Register = () => {
                         type="submit"
                         className="btn btn-primary"
                         value="Register"
+                        name=""
                     />
                 </form>
                 <p className="my-1">

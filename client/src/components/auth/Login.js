@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
@@ -11,7 +12,6 @@ const Login = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
         console.log('SUCCESS');
     };
     return (
@@ -19,7 +19,7 @@ const Login = () => {
             <div className="container">
                 <h1 className="large text-primary">Sign in</h1>
                 <p className="lead">
-                    <i className="fas fa-user"></i>Sign in to your account
+                    <i className="fas fa-user"></i> Sign in to your account
                 </p>
                 <form className="form" onSubmit={(e) => onSubmit(e)}>
                     <div className="form-group">

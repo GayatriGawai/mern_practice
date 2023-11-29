@@ -7,6 +7,10 @@ import Login from './components/auth/login';
 import Register from './components/auth/Register';
 import './App.css';
 
+//REDUX
+import { Provider } from 'react-redux';
+import store from './store';
+
 //In React Router version 6,
 //the < Switch > component has been deprecated
 //and replaced with the < Routes > component.
@@ -15,17 +19,19 @@ import './App.css';
 //compared to the deprecated < Switch > component.
 
 const App = () => (
-    <Router>
-        <Fragment>
-            <Navbar />
+    <Provider store={store}>
+        <Router>
+            <Fragment>
+                <Navbar />
 
-            <Routes>
-                <Route path="/" element={<Landing />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-            </Routes>
-        </Fragment>
-    </Router>
+                <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                </Routes>
+            </Fragment>
+        </Router>
+    </Provider>
 );
 
 export default App;

@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/GayatriGawai/mern_practice#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.9",
