@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/login';
 import Register from './components/auth/Register';
+import Alert from './components/layout/Alert';
 import './App.css';
 
 //REDUX
@@ -23,7 +24,7 @@ const App = () => (
         <Router>
             <Fragment>
                 <Navbar />
-
+                <Alert />
                 <Routes>
                     <Route path="/" element={<Landing />} />
                     <Route path="/login" element={<Login />} />
