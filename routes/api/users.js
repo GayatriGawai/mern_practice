@@ -10,6 +10,7 @@ In recent versions of express-validator,
 the functionality of express-validator/check 
 has been integrated directly into express-validator
 */
+
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -22,7 +23,7 @@ const User = require('../../models/User');
 router.post(
     '/',
     [
-        check('name', 'Name is required').not().isEmpty(),
+        check('name', 'Name is required').notEmpty(),
         check('email', 'Please enter a valid email address').isEmail(),
         check(
             'password',
