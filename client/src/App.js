@@ -24,12 +24,16 @@ const App = () => (
         <Router>
             <Fragment>
                 <Navbar />
-                <Alert />
                 <Routes>
                     <Route path="/" element={<Landing />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
                 </Routes>
+                <section className="container">
+                    <Alert />
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                </section>
             </Fragment>
         </Router>
     </Provider>
