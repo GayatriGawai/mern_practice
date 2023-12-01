@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import PrivateRoute from './components/routing/PrivateRoute';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //import ReactDOM from 'react-dom';
 import Navbar from './components/layout/Navbar';
@@ -7,7 +8,7 @@ import Login from './components/auth/login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import './App.css';
-
+import Dashboard from './components/dashboard/Dashboard';
 //REDUX
 import { Provider } from 'react-redux';
 import store from './store';
@@ -31,14 +32,14 @@ const App = () => {
     }, []);
     return (
         <Provider store={store}>
-            <Router>
-                <Fragment>
-                    <Navbar />
-                    <Routes>
-                        <Route path="/" element={<Landing />} />
-                    </Routes>
-                    <section className="container">
-                        <Alert />
+            <section className="conatiner">
+                <Router>
+                    <Fragment>
+                        <Navbar />
+                        <Routes>
+                            <Route path="/" element={<Landing />} />
+                        </Routes>
+
                         <Routes>
                             <Route path="/login" element={<Login />} />
                             <Route
@@ -46,10 +47,14 @@ const App = () => {
                                 path="/register"
                                 element={<Register />}
                             />
+                            <Route
+                                path="/dashboard"
+                                element={<PrivateRoute component={Dashboard} />}
+                            />
                         </Routes>
-                    </section>
-                </Fragment>
-            </Router>
+                    </Fragment>
+                </Router>
+            </section>
         </Provider>
     );
 };
