@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
+
 const Navbar = () => {
     return (
         <nav className="navbar bg-dark">
@@ -23,4 +27,8 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);

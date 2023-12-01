@@ -13,6 +13,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
+//==================================================================================
+
 //@route     GET api/auth
 //@desc      Test route
 //@access    Public
@@ -25,6 +27,8 @@ router.get('/', auth, async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
+//==================================================================================
 
 //@route     POST api/auth
 //@desc      Authenticate user and get token
