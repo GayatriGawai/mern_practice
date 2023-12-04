@@ -9,6 +9,7 @@ import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import './App.css';
 import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/profile-forms/CreateProfile';
 //REDUX
 import { Provider } from 'react-redux';
 import store from './store';
@@ -50,6 +51,12 @@ const App = () => {
                             <Route
                                 path="/dashboard"
                                 element={<PrivateRoute component={Dashboard} />}
+                            />
+                            <Route
+                                path="/create-profile"
+                                element={
+                                    <PrivateRoute component={CreateProfile} />
+                                }
                             />
                         </Routes>
                     </Fragment>
