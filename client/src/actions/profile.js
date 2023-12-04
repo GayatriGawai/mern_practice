@@ -35,12 +35,14 @@ export const createProfile =
                     'Content-Type': 'application/json',
                 },
             };
-            const res = await axios.post('/api/profile', formData, config);
+            const res = await axios.post('./api/profile', formData, config);
+            console.log('Response from server:', res);
 
             dispatch({
                 type: GET_PROFILE,
                 payload: res.data,
             });
+            console.log(44, res.data);
 
             dispatch(setAlert(edit ? 'Profile updated' : 'Profile Created'));
 

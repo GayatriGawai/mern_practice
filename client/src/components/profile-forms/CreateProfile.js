@@ -57,13 +57,12 @@ const CreateProfile = ({ createProfile, history }) => {
                 <small>* = required fields</small>
                 <form className="form" onSubmit={(e) => onSubmit(e)}>
                     <div className="form-group">
-                        <select name="status">
-                            <option
-                                value={status}
-                                onChange={(e) => onchange(e)}
-                            >
-                                * Select Profession status
-                            </option>
+                        <select
+                            name="status"
+                            value={status}
+                            onChange={(e) => onChange(e)}
+                        >
+                            <option>* Select Profession status</option>
                             <option value="Developer">Developer</option>
                             <option value="Junior Developer">
                                 Junior Developer
