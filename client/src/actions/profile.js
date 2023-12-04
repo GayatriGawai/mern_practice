@@ -44,13 +44,20 @@ export const createProfile =
             });
             console.log(44, res.data);
 
-            dispatch(setAlert(edit ? 'Profile updated' : 'Profile Created'));
+            dispatch(
+                setAlert(
+                    edit ? 'Profile updated' : 'Profile Created',
+                    'success'
+                )
+            );
 
             if (!edit) {
                 history.push('/dashboard');
             }
         } catch (err) {
-            const errors = err.response.data.errors;
+            const errors = err.response?.data?.errors;
+            //console.error(err.message);
+
             if (errors) {
                 errors.forEach((error) =>
                     dispatch(setAlert(error.msg, 'danger'))
@@ -59,8 +66,8 @@ export const createProfile =
             dispatch({
                 type: PROFILE_ERROR,
                 payload: {
-                    msg: err.response.statusText,
-                    status: err.response.status, //its for the HTTP status
+                    msg: err.response?.statusText,
+                    status: err.response?.status, //its for the HTTP status
                 },
             });
         }

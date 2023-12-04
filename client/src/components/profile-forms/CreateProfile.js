@@ -62,7 +62,9 @@ const CreateProfile = ({ createProfile, history }) => {
                             value={status}
                             onChange={(e) => onChange(e)}
                         >
-                            <option>* Select Profession status</option>
+                            <option value="0">
+                                * Select Profession status
+                            </option>
                             <option value="Developer">Developer</option>
                             <option value="Junior Developer">
                                 Junior Developer
