@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 
-const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+const Dashboard = ({
+    getCurrentProfile,
+    auth: { user },
+    profile: { profile },
+}) => {
     useEffect(() => {
         getCurrentProfile();
-    }, [getCurrentProfile]); //We passed the empty error so this will execute once
+    }, []); //We passed the empty array so this will execute once
     return (
         <section className="container">
             <div>Dashboard</div>

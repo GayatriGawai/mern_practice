@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { setAlert } from './alert';
 
 import { GET_PROFILE, PROFILE_ERROR } from './types';
@@ -8,12 +9,13 @@ import { GET_PROFILE, PROFILE_ERROR } from './types';
 export const getCurrentProfile = () => async (dispatch) => {
     try {
         const res = await axios.get('./api/profile/me');
-        console.log(11, res);
+        console.log(11, res.data);
         dispatch({
             type: GET_PROFILE,
             payload: res.data,
         });
     } catch (err) {
+        console.log(18, 'error');
         dispatch({
             type: PROFILE_ERROR,
             payload: {
