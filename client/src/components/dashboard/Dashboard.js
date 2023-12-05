@@ -5,6 +5,7 @@ import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
+import Alert from '../layout/Alert';
 
 const Dashboard = ({
     getCurrentProfile,
@@ -19,6 +20,7 @@ const Dashboard = ({
     ) : (
         <Fragment>
             <section className="container">
+                <Alert />
                 <h1 className="large text-primary">Dashboard</h1>
                 <p className="lead">
                     <i className="fas fa-user"></i> Welcome {user && user.name}
