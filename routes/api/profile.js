@@ -7,6 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Posts');
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //@route     GET api/profile/me
 //@desc      Get current user profile
@@ -157,6 +158,8 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
     try {
+        //remove user posts
+        await Post.deleteMany({ user: req.user.id });
         //Will remove the profile
         await Profile.findOneAndDelete({ user: req.user.id });
         // findOneAndDelete(); is no longer supported in the newer version
