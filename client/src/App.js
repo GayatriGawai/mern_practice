@@ -10,6 +10,7 @@ import Alert from './components/layout/Alert';
 import './App.css';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
+import EditProfile from './components/profile-forms/EditProfile';
 //REDUX
 import { Provider } from 'react-redux';
 import store from './store';
@@ -56,6 +57,12 @@ const App = () => {
                                 path="/create-profile"
                                 element={
                                     <PrivateRoute component={CreateProfile} />
+                                }
+                            />
+                            <Route
+                                path="/edit-profile"
+                                element={
+                                    <PrivateRoute component={EditProfile} />
                                 }
                             />
                         </Routes>
