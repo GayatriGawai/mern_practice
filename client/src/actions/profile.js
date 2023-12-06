@@ -16,13 +16,15 @@ import {
 
 export const getCurrentProfile = () => async (dispatch) => {
     try {
-        const res = await axios.get('./api/profile/me');
+        const res = await axios.get('/api/profile/me');
         //console.log(11, res.data);
         dispatch({
             type: GET_PROFILE,
             payload: res.data,
         });
     } catch (err) {
+        dispatch({ type: CLEAR_PROFILE });
+
         dispatch({
             type: PROFILE_ERROR,
             payload: {
@@ -56,10 +58,10 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 //In case we want a ID from the user we need to pass the path in `` instead of using ''
-// GET ALL PROFILE by ID
-export const getProfilesBy = (userId) => async (dispatch) => {
+// GET PROFILE by ID
+export const getProfileById = (userId) => async (dispatch) => {
     try {
-        const res = await axios.get(`./api/profile/user/${userId}`);
+        const res = await axios.get(`/api/profile/user/${userId}`);
 
         dispatch({
             type: GET_PROFILE,
@@ -79,7 +81,7 @@ export const getProfilesBy = (userId) => async (dispatch) => {
 
 export const getGithubRepos = (username) => async (dispatch) => {
     try {
-        const res = await axios.get(`./api/profile/github/${username}`);
+        const res = await axios.get(`/api/profile/github/${username}`);
 
         dispatch({
             type: GET_REPOS,
@@ -106,7 +108,7 @@ export const createProfile =
                     'Content-Type': 'application/json',
                 },
             };
-            const res = await axios.post('./api/profile', formData, config);
+            const res = await axios.post('/api/profile', formData, config);
             console.log('Response from server:', res);
 
             dispatch({
@@ -154,7 +156,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
             },
         };
         const res = await axios.put(
-            './api/profile/experience',
+            '/api/profile/experience',
             formData,
             config
         );
@@ -195,11 +197,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
                 'Content-Type': 'application/json',
             },
         };
-        const res = await axios.put(
-            './api/profile/education',
-            formData,
-            config
-        );
+        const res = await axios.put('/api/profile/education', formData, config);
         console.log('Response from server:', res);
 
         dispatch({
