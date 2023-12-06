@@ -38,7 +38,7 @@ export const getProfiles = () => async (dispatch) => {
         type: CLEAR_PROFILE,
     });
     try {
-        const res = await axios.get('./api/profile');
+        const res = await axios.get('/api/profile');
 
         dispatch({
             type: GET_PROFILES,
@@ -54,6 +54,8 @@ export const getProfiles = () => async (dispatch) => {
         });
     }
 };
+
+//In case we want a ID from the user we need to pass the path in `` instead of using ''
 // GET ALL PROFILE by ID
 export const getProfilesBy = (userId) => async (dispatch) => {
     try {
@@ -275,7 +277,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = () => async (dispatch) => {
     if (window.confirm('Are you sure? This can NOT be undone!')) {
         try {
-            const res = await axios.delete('/api/profile');
+            await axios.delete('/api/profile');
             dispatch({
                 type: CLEAR_PROFILE,
             });

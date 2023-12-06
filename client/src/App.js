@@ -6,13 +6,14 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/login';
 import Register from './components/auth/Register';
-import Alert from './components/layout/Alert';
+//import Alert from './components/layout/Alert';
 import './App.css';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
 import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
+import Profiles from './components/profiles/Profiles';
 //REDUX
 import { Provider } from 'react-redux';
 import store from './store';
@@ -39,17 +40,11 @@ const App = () => {
                 <Router>
                     <Fragment>
                         <Navbar />
-
                         <Routes>
                             <Route path="/" element={<Landing />} />
-                        </Routes>
-                        <Routes>
                             <Route path="/login" element={<Login />} />
-                            <Route
-                                exact
-                                path="/register"
-                                element={<Register />}
-                            />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/profiles" element={<Profiles />} />
                             <Route
                                 path="/dashboard"
                                 element={<PrivateRoute component={Dashboard} />}
