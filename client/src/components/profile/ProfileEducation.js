@@ -22,7 +22,7 @@ const ProfileEducation = ({
             </p>
             <p>
                 <strong>Project description: </strong>
-                {description}
+                {description ? description : 'No description'}
             </p>
         </div>
     );
