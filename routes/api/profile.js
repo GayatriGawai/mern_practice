@@ -119,12 +119,24 @@ router.post(
 //@access    Public
 
 router.get('/', async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = 5;
     try {
-        const profiles = await Profile.find().populate('user', [
-            'name',
-            'avatar',
-        ]);
-        res.json(profiles);
+        const totalProfiles = await Profile.countDocuments();
+        const totalPages = Math.ceil(totalProfiles / pageSize);
+
+        // if (page < 1 || page > totalPages) {
+        //     return res.status(400).json({ msg: 'Invalid page number' });
+        // }
+        const skip = (page - 1) * pageSize;
+        const profiles = await Profile.find()
+            .populate('user', ['name', 'avatar'])
+            .skip(skip)
+            .limit(pageSize);
+        if (!profiles || profiles.length === 0) {
+            return res.status(404).json({ msg: 'No profiles found' });
+        }
+        res.json({ profiles, totalPages, currentPage: page });
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
@@ -142,6 +154,7 @@ router.get('/user/:user_id', async (req, res) => {
         }).populate('user', ['name', 'avatar']);
 
         if (!profile) return res.status(400).json({ msg: 'Profile not found' });
+
         res.json(profile);
     } catch (err) {
         console.error(err.message);
