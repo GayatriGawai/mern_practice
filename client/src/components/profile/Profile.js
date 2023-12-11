@@ -87,7 +87,7 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 
 Profile.propTypes = {
     getProfileById: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired,
+    profile: PropTypes.array.isRequired,
     auth: PropTypes.object.isRequired,
 };
 

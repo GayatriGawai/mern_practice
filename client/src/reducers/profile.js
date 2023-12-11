@@ -11,6 +11,8 @@ const initialState = {
     profile: null,
     profiles: [],
     repos: [],
+    totalPages: 0,
+    currentPage: 1,
     loading: true,
     error: {},
 };
@@ -28,8 +30,10 @@ export default function (state = initialState, action) {
         case GET_PROFILES:
             return {
                 ...state,
-                profiles: payload,
+                profiles: action.payload.profiles || [],
                 loading: false,
+                totalPages: action.payload.totalPages,
+                currentPage: action.payload.currentPage,
             };
         case PROFILE_ERROR:
             return {

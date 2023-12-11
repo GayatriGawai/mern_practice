@@ -35,12 +35,12 @@ export const getCurrentProfile = () => async (dispatch) => {
     }
 };
 // GET ALL PROFILES
-export const getProfiles = () => async (dispatch) => {
+export const getProfiles = (page) => async (dispatch) => {
     dispatch({
         type: CLEAR_PROFILE,
     });
     try {
-        const res = await axios.get('/api/profile');
+        const res = await axios.get(`/api/profile?page=${page}`);
 
         dispatch({
             type: GET_PROFILES,
