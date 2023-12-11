@@ -54,12 +54,21 @@ const Profiles = ({
                         <button
                             className="btn btn-light"
                             onClick={() => decrementPage()}
+                            style={{
+                                display: localPage === 1 ? 'none' : 'inline',
+                            }}
                         >
                             Previous
                         </button>
                         <button
                             className="btn btn-primary"
                             onClick={() => incrementPage()}
+                            style={{
+                                display:
+                                    localPage === totalPages
+                                        ? 'none'
+                                        : 'inline',
+                            }}
                         >
                             Next
                         </button>
