@@ -137,7 +137,7 @@ router.get('/', async (req, res) => {
             return res.status(404).json({ msg: 'No profiles found' });
         }
         res.json({ profiles, totalPages, currentPage: page });
-        console.log(profiles);
+        // console.log(profiles);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');

@@ -4,28 +4,18 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ProfileItem from './ProfileItem';
 import { getProfiles } from '../../actions/profile';
+import Pagination from './Pagination';
 
 const Profiles = ({
     getProfiles,
-    profile: { profiles, totalPages, currentPage, loading },
+    profile: { profiles, totalPage, currentPage, loading },
 }) => {
-    const [localPage, setLocalPage] = useState(currentPage);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 5;
 
     useEffect(() => {
         getProfiles(localPage);
     }, [getProfiles, localPage]);
-
-    const incrementPage = () => {
-        if (localPage < totalPages) {
-            setLocalPage(localPage + 1);
-        }
-    };
-
-    const decrementPage = () => {
-        if (localPage > 1) {
-            setLocalPage(localPage - 1);
-        }
-    };
 
     return (
         <section className="container">
@@ -50,29 +40,11 @@ const Profiles = ({
                             <h4>No profiles found...</h4>
                         )}
                     </div>
-                    <div className="buttons">
-                        <button
-                            className="btn btn-light"
-                            onClick={() => decrementPage()}
-                            style={{
-                                display: localPage === 1 ? 'none' : 'inline',
-                            }}
-                        >
-                            Previous
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            onClick={() => incrementPage()}
-                            style={{
-                                display:
-                                    localPage === totalPages
-                                        ? 'none'
-                                        : 'inline',
-                            }}
-                        >
-                            Next
-                        </button>
-                    </div>
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPage={totalPage}
+                        onPageChange={setLocalPage}
+                    ></Pagination>
                 </Fragment>
             )}
         </section>
