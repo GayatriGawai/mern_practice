@@ -8,14 +8,14 @@ import Pagination from './Pagination';
 
 const Profiles = ({
     getProfiles,
-    profile: { profiles, totalPage, currentPage, loading },
+    profile: { profiles, totalPage = 0, loading },
 }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const pageSize = 5;
+    //const config = { pageSize: 5 };
 
     useEffect(() => {
-        getProfiles(localPage);
-    }, [getProfiles, localPage]);
+        getProfiles(currentPage);
+    }, [getProfiles, currentPage]);
 
     return (
         <section className="container">
@@ -43,7 +43,7 @@ const Profiles = ({
                     <Pagination
                         currentPage={currentPage}
                         totalPage={totalPage}
-                        onPageChange={setLocalPage}
+                        onPageChange={setCurrentPage}
                     ></Pagination>
                 </Fragment>
             )}
@@ -55,7 +55,7 @@ Profiles.propTypes = {
     getProfiles: PropTypes.func.isRequired,
     profile: PropTypes.shape({
         profiles: PropTypes.array.isRequired,
-        totalPages: PropTypes.number,
+        totalPage: PropTypes.number,
         currentPage: PropTypes.number,
         loading: PropTypes.bool.isRequired,
     }).isRequired,

@@ -1,23 +1,23 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-function Pagination({ currentPage, totlePage, onPageChange }) {
+function Pagination({ currentPage, totalPage, onPageChange }) {
     const pageNumbers = [];
 
-    for (let i = 1; i <= totlePage; i++) {
+    for (let i = 1; i <= totalPage; i++) {
         pageNumbers.push(i);
     }
+
     return (
-        <div className="conatiner">
-            <ul>
+        <div className="container">
+            <ul className="pagination">
                 <li
-                    key={number}
                     className={`page-item ${
                         currentPage === 1 ? 'disabled' : ''
                     }`}
                 >
                     <button
-                        className="btn btn-light"
+                        className="btn "
                         onClick={() => onPageChange(currentPage - 1)}
                     >
                         Previous
@@ -31,17 +31,16 @@ function Pagination({ currentPage, totlePage, onPageChange }) {
                         }`}
                     >
                         <button
-                            className="btn btn-primary"
+                            className="btn"
                             onClick={() => onPageChange(number)}
                         >
-                            Next
+                            {number}
                         </button>
                     </li>
                 ))}
                 <li
-                    key={number}
                     className={`page-item ${
-                        currentPage === totlePage ? 'disabled' : ''
+                        currentPage === totalPage ? 'disabled' : ''
                     }`}
                 >
                     <button
@@ -55,5 +54,11 @@ function Pagination({ currentPage, totlePage, onPageChange }) {
         </div>
     );
 }
+
+Pagination.propTypes = {
+    currentPage: PropTypes.number.isRequired,
+    totalPage: PropTypes.number.isRequired,
+    onPageChange: PropTypes.func.isRequired,
+};
 
 export default Pagination;

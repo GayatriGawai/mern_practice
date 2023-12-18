@@ -11,7 +11,7 @@ const initialState = {
     profile: null,
     profiles: [],
     repos: [],
-    totalPages: 0,
+    totalPage: 0,
     currentPage: 1,
     loading: true,
     error: {},
@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
                 ...state,
                 profiles: action.payload.profiles || [],
                 loading: false,
-                totalPages: action.payload.totalPages,
+                totalPage: action.payload.totalPage,
                 currentPage: action.payload.currentPage,
             };
         case PROFILE_ERROR:

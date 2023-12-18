@@ -160,7 +160,8 @@ img {
 .btn-primary,
 .bg-primary,
 .badge-primary,
-.alert-primary {
+.alert-primary,
+.page-item.active {
   background: var(--primary-color);
   color: #fff;
 }
@@ -168,7 +169,8 @@ img {
 .btn-light,
 .bg-light,
 .badge-light,
-.alert-light {
+.alert-light,
+.page-item.disabled{
   background: var(--light-color);
   color: #333;
 }
@@ -582,5 +584,33 @@ button {
   top: 4rem;
   right: 2rem;
   display: inline-block;
+}
+
+.horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+ul.pagination {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.button{
+
+      display: inline-block;
+      background: var(--light-color);
+      color: #333;
+      padding: 0.4rem 1.3rem;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      transition: opacity 0.2s ease-in;
+      outline: none;
 }
 

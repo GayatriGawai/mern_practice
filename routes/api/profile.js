@@ -120,24 +120,24 @@ router.post(
 
 router.get('/', async (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const pageSize = 5;
+    const config = { pageSize: 3 };
     try {
         const totalProfiles = await Profile.countDocuments();
-        const totalPages = Math.ceil(totalProfiles / pageSize);
+        const totalPage = Math.ceil(totalProfiles / config.pageSize);
 
-        if (page < 1 || page > totalPages) {
+        if (page < 1 || page > totalPage) {
             return res.status(400).json({ msg: 'Invalid page number' });
         }
-        const skip = (page - 1) * pageSize;
+        const skip = (page - 1) * config.pageSize;
         const profiles = await Profile.find()
             .populate('user', ['name', 'avatar'])
             .skip(skip)
-            .limit(pageSize);
+            .limit(config.pageSize);
         if (!profiles || profiles.length === 0) {
             return res.status(404).json({ msg: 'No profiles found' });
         }
-        res.json({ profiles, totalPages, currentPage: page });
-        // console.log(profiles);
+        res.json({ profiles, totalPage, currentPage: page });
+        console.log(profiles);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
